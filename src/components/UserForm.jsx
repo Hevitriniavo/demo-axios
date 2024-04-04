@@ -1,6 +1,6 @@
 "use client";
 
-import axios from "axios";
+import { setUp } from "../services/axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -16,7 +16,7 @@ const UserForm = () => {
   
   const onSubmit = (e) => {
      e.preventDefault();
-      // axios.post("http://localhost:8080/api/users", user)
+      //  setUp().post("/users", user)
       // .then(res => {
       //   console.log(res.data);
       // }).catch(err => {
@@ -28,7 +28,8 @@ const UserForm = () => {
 
     const postUser = async () => {
       try {
-        const res = await axios.post("http://localhost:8080/api/users", user);
+        const res = await setUp()
+        .post("/users", user);
 
          router.push("/")
       } catch (err) {
@@ -37,9 +38,6 @@ const UserForm = () => {
     }
 
 
-
-
-  
   return (
     <form onSubmit={onSubmit} className="max-w-xs mx-auto mt- bg-slate-100 p-8 rounded-lg">
       <div className="mb-4">

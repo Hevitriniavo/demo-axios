@@ -1,9 +1,9 @@
 "use client";
 
-import axios from "axios";
 import UserTable from "../components/UserTable";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { setUp } from "../services/axios";
 
 export default function Home() {
   const [users, setUsers] = useState([]);
@@ -15,7 +15,8 @@ export default function Home() {
 
   const getUser = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/api/users");
+      const res = await setUp()
+      .get("/users");
       setUsers(res.data)
     } catch (err) {
       console.error(err);
